@@ -1,7 +1,13 @@
 name: TMAS Scan
 
 on:
+  pull_request:
   push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write   # PRコメント投稿に必要
 
 jobs:
   tmas-scan:
@@ -13,14 +19,14 @@ jobs:
         with:
           path: repo-name
 
-      - name: Download TMAS and Scan Repo for Open Source Vulnerabilities and Secrets
-        uses: trendmicro/tmas-scan-action@v2
+      - name: TMAS Scan
+        uses: trendmicro/tmas-scan-action@v3
         with:
-          version: '2' # Recommended: pin to major version for automatic updates within v2.x.x
+          version: '3'              # メジャー固定推奨（3.x.x の最新を自動追従）
           vulnerabilitiesScan: true
-          malwareScan: false # Malware scanning is only available for container images at this time
+          malwareScan: false        # ソースツリーには非対応
           secretsScan: true
           artifact: dir:./repo-name
-          additionalArgs: --region=eu-central-1
+          additionalArgs: --region=ap-northeast-1
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
