@@ -15,16 +15,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: repo-name
 
       - name: TMAS Scan
         uses: trendmicro/tmas-scan-action@v3.1.3
         with:
-          version: '3'              # メジャー固定推奨（3.x.x の最新を自動追従）
+          version: '2'              # メジャー固定推奨（3.x.x の最新を自動追従）
           vulnerabilitiesScan: true
-          malwareScan: false        # ソースツリーには非対応
+          malwareScan: true
           secretsScan: true
           artifact: dir:./repo-name
           additionalArgs: --region=ap-northeast-1
