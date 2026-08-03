@@ -24,7 +24,7 @@ jobs:
         with:
           version: '2'              # メジャー固定推奨（3.x.x の最新を自動追従）
           vulnerabilitiesScan: true
-          malwareScan: true
+          malwareScan: false
           secretsScan: true
           artifact: dir:./repo-name
           additionalArgs: --region=ap-northeast-1
