@@ -27,6 +27,7 @@ jobs:
           malwareScan: false
           secretsScan: true
           artifact: dir:./repo-name
+          additionalArgs: --region=ap-northeast-1 --evaluatePolicy
           additionalArgs: --region=ap-northeast-1
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
